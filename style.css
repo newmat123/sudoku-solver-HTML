@@ -1,9 +1,9 @@
-td {
-	border:  2px solid #333;
+
+input {
+	border:  2px solid #999;
 	height:  100px;
 	width:  100px;
 	text-align:  center;
-	vertical-align:  middle;
 	font-family:  "Comic Sans MS", cursive, sans-serif;
 	font-size:  70px;
 	cursor: pointer;
@@ -14,4 +14,31 @@ table {
 	position: absolute;
 	left: 50px;
 	top: 100px;
+}
+
+input:first-child {
+  border-left:solid #333;
+}
+input:nth-child(3n) {
+  border-right:solid #333;
+}
+table:first-child {
+  border-top:solid #333;
+}
+table:nth-child(3n) td {
+  border-bottom:solid #333;
+}
+
+
+.solveB {
+	padding: 10px;
+	border: 1px solid #333;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 50px;
+}
+
+.solveB:hover {
+	cursor: pointer;
+	background-color: #555;
 }

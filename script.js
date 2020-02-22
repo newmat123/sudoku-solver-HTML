@@ -1,9 +1,21 @@
 
+function chekSpot(num, row, coll) {
 
-function createPlate() {
+  for (var i = 0; i < 9; i++) {
+    const obj = document.getElementById(row+','+i);
+    console.log(obj);
+  }
+  for (var i = 0; i < 9; i++) {
+    const obj = document.getElementById(i+','+coll);
+    console.log(obj);
+  }
+  
+}
+
+
+function createGamePlate() {
 
   const root = document.getElementById('root');
-  var id = 0;
 
   for (var i = 0; i < 9; i++) {
 
@@ -11,12 +23,13 @@ function createPlate() {
     root.appendChild(tr);
 
     for (var j = 0; j < 9; j++) {
-      const td = document.createElement('td');
-      td.setAttribute('class', 'cell '+id);
-      tr.appendChild(td);
-      id++;
+      const box = document.createElement('input');
+      box.setAttribute('id', i+','+j);
+      box.setAttribute('maxlength', '1');
+      box.setAttribute('onchange', 'chekSpot(value, '+i+', '+j+')');
+      tr.appendChild(box);
     }
   }
 }
 
-createPlate();
+createGamePlate();
