@@ -2,14 +2,24 @@
 function chekSpot(num, row, coll) {
 
   for (var i = 0; i < 9; i++) {
-    const obj = document.getElementById(row+','+i);
-    console.log(obj);
+    if(i != coll){
+      const obj = document.getElementById(row+','+i);
+      console.log(obj.value);
+      if(obj.value == num){
+        console.log(false);
+      }
+    }
   }
   for (var i = 0; i < 9; i++) {
-    const obj = document.getElementById(i+','+coll);
-    console.log(obj);
+    if(i != row){
+      const obj = document.getElementById(i+','+coll);
+      console.log(obj.value);
+      if(obj.value == num){
+        console.log(false);
+      }
+    }
   }
-  
+
 }
 
 
