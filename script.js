@@ -1,6 +1,6 @@
 var spot = [0,0];
 
-function chekSpot(num, row, coll) {
+function chekSpot(num, row, coll, setup) {
 
   //return used_in_row(num, row, coll), used_in_col(num, row, coll), used_in_box(num, row, coll);
   for (var i = 0; i < 9; i++) {
@@ -39,7 +39,11 @@ function chekSpot(num, row, coll) {
       }
     }
   }
-  document.getElementById(row+','+coll).style.color = "black";
+  if(setup){
+    document.getElementById(row+','+coll).style.color = "orange";
+  }else {
+    document.getElementById(row+','+coll).style.color = "black";
+  }
   return true;
 }
 
@@ -69,7 +73,7 @@ function solveSuduko(){
   var x = spot[0];
   var y = spot[1];
   for (var num = 1; num < 10; num++) {
-    if(chekSpot(num, x, y)){
+    if(chekSpot(num, x, y, false)){
       document.getElementById(x+','+y).value = num.toString();
       if(solveSuduko()){
         return true;
@@ -101,7 +105,7 @@ function createGamePlate() {
       const box = document.createElement('input');
       box.setAttribute('id', i+','+j);
       box.setAttribute('maxlength', '1');
-      box.setAttribute('onchange', 'chekSpot(value, '+i+', '+j+')');
+      box.setAttribute('onchange', 'chekSpot(value, '+i+', '+j+', true)');
       tr.appendChild(box);
     }
   }

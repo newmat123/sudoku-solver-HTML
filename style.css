@@ -1,6 +1,6 @@
 
 input {
-	border:  2px solid #999;
+	border: solid #999;
 	height:  100px;
 	width:  100px;
 	text-align:  center;
@@ -17,16 +17,16 @@ table {
 }
 
 input:first-child {
-  border-left:solid #333;
+  border-left: 5px solid #333;
 }
 input:nth-child(3n) {
-  border-right:solid #333;
+  border-right: 5px solid #333;
 }
-table:first-child {
-  border-top:solid #333;
+tr:first-child {
+  border-top: 5px solid #333;
 }
-table:nth-child(3n) td {
-  border-bottom:solid #333;
+tr:nth-child(3n) {
+  border-bottom: 5px solid #333;
 }
 
 
