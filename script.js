@@ -1,4 +1,6 @@
 
+var spot = [];
+
 function used_in_row(num, row, coll){
   for (var i = 0; i < 9; i++) {
     if(i != coll){
@@ -39,6 +41,8 @@ function used_in_box(num, row, coll){
         if(obj.value == num){
           document.getElementById(row+','+coll).style.color = "red";
           return true;
+        }else{
+          document.getElementById(row+','+coll).style.color = "black";
         }
       }
     }
@@ -47,13 +51,52 @@ function used_in_box(num, row, coll){
 }
 
 function chekSpot(num, row, coll) {
-
-//her h9hfjir5rf6ty7g8huj9iko0p+læ´åø mangler
-  return used_in_row
-
+  return used_in_row(num, row, coll), used_in_col(num, row, coll), used_in_box(num, row, coll);
 }
 
+function findEmpty() {
+  for (var i = 0; i < 9; i++) {
+    for (var j = 0; j < 9; j++) {
+      const obj = document.getElementById(i+','+j);
+      console.log(obj.value);
+      if(obj.value.length == 0){
+        spot[0] = i;
+        spot[1] = j;
+        console.log(spot[0]);
+        console.log(spot[1]);
+        return true;
+      }
+    }
+  }
+  return false;
+}
 
+function solveSuduko(){
+
+  if(findEmpty() != true){
+    return true;
+  }
+  var x = spot[0];
+  var y = spot[1];
+  for (var num = 1; num < 10; num++) {
+    if(chekSpot(num, x, y)){
+      document.getElementById(x+','+y).value = num.toString();
+      if(solveSuduko()){
+        return true;
+      }
+      document.getElementById(x+','+y).value = '';
+    }
+  }
+  return false;
+}
+
+function Solve() {
+  if(solveSuduko()){
+    console.log("done");
+  }else {
+    console.log("not solveable");
+  }
+}
 
 function createGamePlate() {
 
