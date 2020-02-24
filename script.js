@@ -1,35 +1,29 @@
+var spot = [0,0];
 
-var spot = [];
+function chekSpot(num, row, coll) {
 
-function used_in_row(num, row, coll){
+  //return used_in_row(num, row, coll), used_in_col(num, row, coll), used_in_box(num, row, coll);
   for (var i = 0; i < 9; i++) {
     if(i != coll){
       const obj = document.getElementById(row+','+i);
 
       if(obj.value == num){
         document.getElementById(row+','+coll).style.color = "red";
-        return true;
+        return false;
       }
     }
   }
-  return false;
-}
-
-function used_in_col(num, row, coll){
   for (var i = 0; i < 9; i++) {
     if(i != row){
       const obj = document.getElementById(i+','+coll);
 
       if(obj.value == num){
         document.getElementById(row+','+coll).style.color = "red";
-        return true;
+        return false;
       }
     }
   }
-  return false;
-}
 
-function used_in_box(num, row, coll){
   var box_r = Math.floor(row / 3);
   var box_c = Math.floor(coll / 3);
 
@@ -40,18 +34,13 @@ function used_in_box(num, row, coll){
 
         if(obj.value == num){
           document.getElementById(row+','+coll).style.color = "red";
-          return true;
-        }else{
-          document.getElementById(row+','+coll).style.color = "black";
+          return false;
         }
       }
     }
   }
-  return false;
-}
-
-function chekSpot(num, row, coll) {
-  return used_in_row(num, row, coll), used_in_col(num, row, coll), used_in_box(num, row, coll);
+  document.getElementById(row+','+coll).style.color = "black";
+  return true;
 }
 
 function findEmpty() {
@@ -76,6 +65,7 @@ function solveSuduko(){
   if(findEmpty() != true){
     return true;
   }
+
   var x = spot[0];
   var y = spot[1];
   for (var num = 1; num < 10; num++) {
