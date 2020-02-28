@@ -2,10 +2,9 @@ var spot = [0,0];
 
 function chekSpot(num, row, coll, setup) {
 
-  //return used_in_row(num, row, coll), used_in_col(num, row, coll), used_in_box(num, row, coll);
-  for (var i = 0; i < 9; i++) {
-    if(i != coll){
-      const obj = document.getElementById(row+','+i);
+  for (var col = 0; col < 9; col++) {
+    if(col != coll){
+      const obj = document.getElementById(row+','+col);
 
       if(obj.value == num){
         document.getElementById(row+','+coll).style.color = "red";
@@ -13,9 +12,9 @@ function chekSpot(num, row, coll, setup) {
       }
     }
   }
-  for (var i = 0; i < 9; i++) {
-    if(i != row){
-      const obj = document.getElementById(i+','+coll);
+  for (var ro = 0; ro < 9; ro++) {
+    if(ro != row){
+      const obj = document.getElementById(ro+','+coll);
 
       if(obj.value == num){
         document.getElementById(row+','+coll).style.color = "red";
@@ -24,11 +23,11 @@ function chekSpot(num, row, coll, setup) {
     }
   }
 
-  var box_r = Math.floor(row / 3);
-  var box_c = Math.floor(coll / 3);
+  var box_row = Math.floor(row / 3);
+  var box_coll = Math.floor(coll / 3);
 
-  for (var r = box_r * 3; r < box_r * 3 + 3; r++) {
-    for (var c = box_c * 3; c < box_c * 3 + 3; c++) {
+  for (var r = box_row * 3; r < box_row * 3 + 3; r++) {
+    for (var c = box_coll * 3; c < box_coll * 3 + 3; c++) {
       if(r != row && c != coll){
         const obj = document.getElementById(r+','+c);
 
@@ -47,7 +46,8 @@ function chekSpot(num, row, coll, setup) {
   return true;
 }
 
-function findEmpty() {
+
+function findEmptySlot() {
   for (var i = 0; i < 9; i++) {
     for (var j = 0; j < 9; j++) {
       const obj = document.getElementById(i+','+j);
@@ -55,8 +55,7 @@ function findEmpty() {
       if(obj.value.length == 0){
         spot[0] = i;
         spot[1] = j;
-        console.log(spot[0]);
-        console.log(spot[1]);
+
         return true;
       }
     }
@@ -64,9 +63,10 @@ function findEmpty() {
   return false;
 }
 
+
 function solveSuduko(){
 
-  if(findEmpty() != true){
+  if(findEmptySlot() != true){
     return true;
   }
 
@@ -84,15 +84,17 @@ function solveSuduko(){
   return false;
 }
 
-function Solve() {
+
+function Start() {
   if(solveSuduko()){
-    console.log("done");
+    alert('done');
   }else {
-    console.log("not solveable");
+    alert('not solvable');
   }
 }
 
-function createGamePlate() {
+
+function createSodukoPlate() {
 
   const root = document.getElementById('root');
 
@@ -111,4 +113,4 @@ function createGamePlate() {
   }
 }
 
-createGamePlate();
+createSodukoPlate();
